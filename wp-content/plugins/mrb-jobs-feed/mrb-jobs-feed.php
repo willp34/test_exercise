@@ -19,8 +19,19 @@ if (!defined('WPINC')) {
 // Plugin Autoloader
 require_once __DIR__.'/autoloader.php';
 
+
 // Grab the core Plugin class
 $core = Core::class;
 
 //  Initialise
 add_action('plugins_loaded', [$core, 'initialise']);
+
+
+
+	//add js
+		add_action('wp_enqueue_scripts',[$core,'my_js_files']);
+		
+		//ajax handler
+		add_action('wp_ajax_mrb_job_upload', [$core,'handle_application_upload']);
+		
+		

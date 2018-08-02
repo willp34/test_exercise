@@ -13,6 +13,7 @@ $mrb_job_xml = simplexml_load_string($feed);
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main">
 			<div class="container">	
+			
 				<?php
 					while ( have_posts() ) :
 						the_post();
@@ -38,9 +39,13 @@ $mrb_job_xml = simplexml_load_string($feed);
 					// echo "</pre>"; 
 					?>
 					<li class="jobs-list-item" id="job-<?php echo $job->guid;?>">
-						<h2><a href="/jobs/<?php echo $job->guid; ?>"><?php echo $job->title;?></a></h2>
+						<h2><a href="/jobs/<?php echo $job->guid;?>"><?php echo $job->title;?></a></h2>
+						<h3><?php echo $job->content->Vacancy->JobTypes ?></h3>
+						<h4><?php echo $job->content->Vacancy->Location ?></h4>
+						<h5><?php echo $job->content->Vacancy->Salary ?></h5>
+						<h3><?php echo date("jS M Y", strtotime($job->content->Vacancy->ClosingDate));?></h3>
 						<p><?php echo substr($job->content->Vacancy->Description, 0, 100); ?>...</p>
-						<p><a href="/jobs/<?php echo $job->guid; ?>">View Full Job</a></p>
+						<p><a href="/jobs/<?php echo $job->guid;?>">View Full Job</a></p>
 					</li>
 				<?php endforeach; ?>
 				</ul>
@@ -55,7 +60,8 @@ $mrb_job_xml = simplexml_load_string($feed);
   </ul>
 </nav>
 			</div>
-		</main><!-- #main -->
+		</main><!-- #main -
+		->
 	</div><!-- #primary -->
 
 <?php
